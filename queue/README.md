@@ -1,0 +1,1 @@
+# 队列> 队列是一种列表，只能从队尾加入，在队首删除，入队 (enqueue) 出队（dequeue）### 队列的基本构成#### 属性* dataSource 当前列表容器#### 方法* enqueue() 入队* dequeue() 出队* front() 返回队首* back() 返回队尾* toString() 返回栈顶元素* isEmpty() 清空队列#### ES6版本实现基```js```

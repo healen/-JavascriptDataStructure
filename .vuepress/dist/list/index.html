@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>列表</title>
+    <meta name="description" content="">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.d01e3fed.css" as="style"><link rel="preload" href="/assets/js/app.cf20b64c.js" as="script"><link rel="preload" href="/assets/js/2.67b27853.js" as="script"><link rel="preload" href="/assets/js/6.e93b07c3.js" as="script"><link rel="prefetch" href="/assets/js/3.2677ddb2.js"><link rel="prefetch" href="/assets/js/4.ee1e870c.js"><link rel="prefetch" href="/assets/js/5.f747e2b5.js"><link rel="prefetch" href="/assets/js/7.148183e8.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.d01e3fed.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="列表"><a href="#列表" aria-hidden="true" class="header-anchor">#</a> 列表</h1> <blockquote><p>列表是一种数据结构，在生活中也有广泛应用，例如待办事项清单、购物清单等都可以做成列表。在开发中，我们就可以把列表抽象成一个数据类型，将它写成一个可以循环使用并能用来解决问题的程序，这就是一个列表抽象类。</p></blockquote> <h3 id="列表的基本构成"><a href="#列表的基本构成" aria-hidden="true" class="header-anchor">#</a> 列表的基本构成</h3> <h4 id="属性"><a href="#属性" aria-hidden="true" class="header-anchor">#</a> 属性</h4> <ul><li>listSource 当前列表容器</li> <li>pos 列表当前位置</li> <li>listSize 列表个数</li></ul> <h4 id="方法"><a href="#方法" aria-hidden="true" class="header-anchor">#</a> 方法</h4> <ul><li>append(content) 对列表的末尾添加</li> <li>insert(content) 在现有元素后插入</li> <li>clear() 清空列表</li> <li>remove() 从列表种移除元素</li> <li>toString() 字符串形式返回列表</li> <li>printTable() 以表格形式打印所有列表</li> <li>getElement() 返回当前位置的元素</li> <li>update() 更新</li></ul> <h4 id="游标操作"><a href="#游标操作" aria-hidden="true" class="header-anchor">#</a> 游标操作</h4> <ul><li>front() 移动游标至最顶端</li> <li>end() 移动游标至最低端</li> <li>prev() 上移动</li> <li>next() 下移动</li> <li>moveTo() 移动游标到某位置</li> <li>currPos() 返回当前pos</li> <li>hasNext() 是否有下一个</li> <li>hasPrev() 判断是否有上一个</li> <li>contains() 判断给定值是否在列表中</li> <li>length() 返回当前列表个数</li> <li>find() 查询元素位置</li></ul> <h4 id="es6版本实现基"><a href="#es6版本实现基" aria-hidden="true" class="header-anchor">#</a> ES6版本实现基</h4> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">class</span> <span class="token class-name">List</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>listSource <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>pos <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>listSize <span class="token operator">=</span> <span class="token number">0</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">/*
+  * =============================基础操作，最基本的增，删，改，查======================
+  * */</span>
+
+  <span class="token comment">/*
+  * 列表 增1
+  * */</span>
+  <span class="token function">append</span><span class="token punctuation">(</span><span class="token parameter">element</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>listSource<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>listSize<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> element
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/*
+  * 列表 增2
+  * */</span>
+  <span class="token function">insert</span><span class="token punctuation">(</span><span class="token parameter">element<span class="token punctuation">,</span> after</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> pos <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>pos <span class="token operator">&gt;</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>listSource<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>pos <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> after<span class="token punctuation">)</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>listSize<span class="token operator">++</span>
+      <span class="token keyword">return</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/*
+  * 列表 删
+  * */</span>
+  <span class="token function">remove</span><span class="token punctuation">(</span><span class="token parameter">element</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> removePos <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>removePos <span class="token operator">&gt;</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>listSource<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>removePos<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>listSize<span class="token operator">--</span>
+      <span class="token keyword">return</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/*
+  * 列表 改
+  * */</span>
+  <span class="token function">update</span><span class="token punctuation">(</span><span class="token parameter">element<span class="token punctuation">,</span> value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> pos <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>pos <span class="token operator">&gt;</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>value <span class="token operator">===</span> <span class="token string">&quot;&quot;</span> <span class="token operator">||</span> <span class="token operator">!</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>listSource<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> value
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span>
+  <span class="token punctuation">}</span>
+
+
+  <span class="token comment">/*
+  * 查询
+  * */</span>
+  <span class="token function">find</span><span class="token punctuation">(</span><span class="token parameter">element</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>listSize<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>listSource<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> element<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> i
+      <span class="token punctuation">}</span>
+      i<span class="token operator">++</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/*
+  * 检索对象是否包含
+  * */</span>
+  <span class="token function">contains</span><span class="token punctuation">(</span><span class="token parameter">element</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>i<span class="token operator">&lt;</span><span class="token keyword">this</span><span class="token punctuation">.</span>listSize<span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>listSource<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">===</span>element<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span>
+      <span class="token punctuation">}</span>
+      i<span class="token operator">++</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">/*
+  * 清空列表
+  * */</span>
+  <span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>listSource <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>listSize <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>pos <span class="token operator">=</span> <span class="token number">0</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/*
+  * ========================显示操作，字符串形式返回，返回当前位置，以及表格形式打印==================
+  * */</span>
+
+  <span class="token comment">/*
+  * 返回所有列表元素
+  * */</span>
+  <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>listSource<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/*
+  * 以表格形式打印当前列表对象的元素
+  * */</span>
+  <span class="token function">printTable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">table</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>listSource<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/*
+  * 返回当前元素
+  * */</span>
+  <span class="token function">getElement</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> <span class="token punctuation">{</span>pos<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>listSource<span class="token punctuation">[</span>pos<span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+
+
+  <span class="token comment">/*
+  * ==================================游标操作================================
+  * */</span>
+
+  <span class="token comment">/*
+  * 将游标移动至顶端
+  * */</span>
+  <span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>pos <span class="token operator">=</span> <span class="token number">0</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/*
+  * 将游标移动至底部
+  * */</span>
+  <span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>pos <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>listSize <span class="token operator">-</span> <span class="token number">1</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/*
+  * 游标上移
+  * */</span>
+
+  <span class="token function">prev</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>pos <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>pos<span class="token operator">--</span>
+      <span class="token keyword">return</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/*
+  * 游标下移
+  * */</span>
+
+  <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>pos <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>listSize<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>pos<span class="token operator">++</span>
+      <span class="token keyword">return</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span>
+
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/*
+  * 游标指定位置移动
+  * */</span>
+  <span class="token function">moveTo</span><span class="token punctuation">(</span><span class="token parameter">pos</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>pos <span class="token operator">=</span> pos
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>pos <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> pos <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>listSize<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/*
+  * 返回当前游标
+  * */</span>
+  <span class="token function">currPos</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>pos
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/*
+  * 是否有下一个
+  * */</span>
+  <span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>pos <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>listSize <span class="token operator">-</span> <span class="token number">1</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/*
+  * 是否有上一个
+  * */</span>
+  <span class="token function">hasPrev</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>pos <span class="token operator">&gt;</span> <span class="token number">0</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/*
+  * 获取当前长度
+  * */</span>
+  <span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>listSize
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.cf20b64c.js" defer></script><script src="/assets/js/2.67b27853.js" defer></script><script src="/assets/js/6.e93b07c3.js" defer></script>
+  </body>
+</html>

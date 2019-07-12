@@ -1,0 +1,1 @@
+/** 1分钟快速实现，数据类型栈* */class Stack {  constructor(){    this.listSource=[]    this.top=0  }  push(ele){    this.listSource[this.top++] = ele  }  pop(){    return this.listSource[--this.top]  }  clear(){    this.top=0  }  peek(){    return this.listSource[this.top-1]  }  length(){    return this.top  }}module.exports = Stack

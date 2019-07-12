@@ -1,0 +1,1 @@
+const Queue = require("./Queue")const q = new Queue()console.log("入队-------")q.enqueue("1")q.enqueue("2")q.enqueue("3")q.enqueue("4")/** 出队* */console.log("出队--------")console.log(q.dequeue())/*** */console.log("队顶-----")console.log(q.front())console.log("队尾-----")console.log(q.back())console.log("显示-----")console.log(q.toString())
